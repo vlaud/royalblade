@@ -558,6 +558,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCam: {fileID: 523807697}
+  player: {fileID: 0}
+  stage: {fileID: 1359610936}
+  dist: 0
 --- !u!1 &606228055
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,8 +7,9 @@ namespace playerController
     {
         public static Player inst = null;
         public Transform myCam = null;
-        
-
+        public Transform player = null;
+        public Transform stage = null;
+        public float dist;
         public StateMachine stateMachine { get; private set;}
         private void Awake()
         {
@@ -17,6 +18,7 @@ namespace playerController
         // Start is called before the first frame update
         void Start()
         {
+            player = transform;
             stateMachine = new StateMachine(PlayerState.Run, new StateRun());
             stateMachine.AddState(PlayerState.Jump, new StateJump());
             stateMachine.AddState(PlayerState.Fall, new StateFall());
@@ -32,6 +34,7 @@ namespace playerController
             }
             //매프레임 실행해야하는 동작 호출.
             stateMachine.DoOperateUpdate();
+            dist = player.position.y - myCam.position.y;
         }
         private void FixedUpdate()
         {
@@ -44,7 +47,13 @@ namespace playerController
                 stateMachine.SetState(PlayerState.Jump);
             }
         }
-       
+        
+        public void SetCamParent(bool v)
+        {
+            if (v) myCam.SetParent(player);
+            else myCam.SetParent(stage);
+        }
+
         private void OnCollisionEnter(Collision collision)
         {
             stateMachine.SetState(PlayerState.Run);

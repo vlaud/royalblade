@@ -6,7 +6,7 @@ namespace playerController
     {
         public void OperateEnter()
         {
-
+            Player.inst.SetCamParent(false);
         }
 
         public void OperateExit()
@@ -32,12 +32,15 @@ namespace playerController
 
         public void OperateExit()
         {
-
+            Player.inst.SetCamParent(false);
         }
 
         public void OperateUpdate()
         {
-
+            if(Player.inst.dist > Mathf.Epsilon)
+            {
+                Player.inst.SetCamParent(true);
+            }
         }
         public void OperateFixedUpdate()
         {
@@ -56,7 +59,7 @@ namespace playerController
 
         public void OperateExit()
         {
-
+            Player.inst.SetCamParent(false);
         }
 
         public void OperateFixedUpdate()
@@ -66,7 +69,10 @@ namespace playerController
 
         public void OperateUpdate()
         {
-
+            if (Player.inst.dist < -0.9f)
+            {
+                Player.inst.SetCamParent(true);
+            }
         }
     }
     public class StateDead : IState
