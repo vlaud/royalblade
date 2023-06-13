@@ -28,22 +28,21 @@ namespace playerController
         // Update is called once per frame
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.T))
-            {
-                Debug.Log(stateMachine.CurrentState);
-            }
+            Debug.Log(stateMachine.CurrentState);
+
             //매프레임 실행해야하는 동작 호출.
             stateMachine.DoOperateUpdate();
-            dist = player.position.y - myCam.position.y;
         }
         private void FixedUpdate()
         {
+            dist = player.position.y - myCam.position.y;
             stateMachine.DoOperateFixedUpdate();
         }
         public void OnJump()
         {
-            if(stateMachine.CurrentState == stateMachine.GetState(PlayerState.Run))
+            if (stateMachine.CurrentState == stateMachine.GetState(PlayerState.Run))
             {
+                Debug.Log("jump " + stateMachine.CurrentState);
                 stateMachine.SetState(PlayerState.Jump);
             }
         }

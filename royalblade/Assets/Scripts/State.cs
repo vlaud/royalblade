@@ -37,14 +37,15 @@ namespace playerController
 
         public void OperateUpdate()
         {
-            if(Player.inst.dist > Mathf.Epsilon)
-            {
-                Player.inst.SetCamParent(true);
-            }
+            
         }
         public void OperateFixedUpdate()
         {
-            if (Player.inst.myRigid.velocity.y < 0f)
+            if (Player.inst.dist > 0.0f)
+            {
+                Player.inst.SetCamParent(true);
+            }
+            if (Player.inst.myRigid.velocity.y < 0.0f && Player.inst.player.localPosition.y > 0.1f)
             {
                 Player.inst.stateMachine.SetState(PlayerState.Fall);
             }
@@ -64,15 +65,15 @@ namespace playerController
 
         public void OperateFixedUpdate()
         {
-
-        }
-
-        public void OperateUpdate()
-        {
             if (Player.inst.dist < -0.9f)
             {
                 Player.inst.SetCamParent(true);
             }
+        }
+
+        public void OperateUpdate()
+        {
+            
         }
     }
     public class StateDead : IState
