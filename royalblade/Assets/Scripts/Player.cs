@@ -10,6 +10,7 @@ namespace playerController
         {
             Run,
             Jump,
+            Fall,
             Dead
         }
 
@@ -26,11 +27,13 @@ namespace playerController
             //상태 생성
             IState run = new StateRun();
             IState jump = new StateJump();
+            IState fall = new StateFall();
             IState dead = new StateDead();
 
             //키입력 등에 따라서 언제나 상태를 꺼내 쓸 수 있게 딕셔너리에 보관
             dicState.Add(PlayerState.Run, run);
             dicState.Add(PlayerState.Jump, jump);
+            dicState.Add(PlayerState.Fall, fall);
             dicState.Add(PlayerState.Dead, dead);
 
             //기본상태는 달리기로 설정.
@@ -47,11 +50,22 @@ namespace playerController
             //매프레임 실행해야하는 동작 호출.
             stateMachine.DoOperateUpdate();
         }
+        private void FixedUpdate()
+        {
+            stateMachine.DoOperateFixedUpdate();
+        }
         public void OnJump()
         {
             if (stateMachine.CurrentState == dicState[PlayerState.Run])
             {
                 stateMachine.SetState(dicState[PlayerState.Jump]);
+            }
+        }
+        public void OnFall()
+        {
+            if (myRigid.velocity.y < 0f)
+            {
+                stateMachine.SetState(dicState[PlayerState.Fall]);
             }
         }
         private void OnCollisionEnter(Collision collision)

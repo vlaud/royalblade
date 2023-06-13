@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //상태들의 최상위 인터페이스.
@@ -7,6 +5,7 @@ public interface IState
 {
     void OperateEnter();
     void OperateUpdate();
+    void OperateFixedUpdate();
     void OperateExit();
 }
 namespace playerController
@@ -47,6 +46,10 @@ namespace playerController
         public void DoOperateUpdate()
         {
             CurrentState.OperateUpdate();
+        }
+        public void DoOperateFixedUpdate()
+        {
+            CurrentState.OperateFixedUpdate();
         }
     }
 }
