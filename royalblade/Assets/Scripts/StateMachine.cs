@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 
 //상태들의 최상위 인터페이스.
 public interface IState
