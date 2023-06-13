@@ -1,4 +1,5 @@
 using UnityEngine;
+
 namespace playerController
 {
     public class StateRun : IState
@@ -40,7 +41,10 @@ namespace playerController
         }
         public void OperateFixedUpdate()
         {
-            Player.inst.OnFall();
+            if (Player.inst.myRigid.velocity.y < 0f)
+            {
+                Player.inst.stateMachine.SetState(PlayerState.Fall);
+            }
         }
     }
     public class StateFall : IState

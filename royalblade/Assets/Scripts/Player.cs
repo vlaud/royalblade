@@ -6,17 +6,10 @@ namespace playerController
     public class Player : CharacterProperty
     {
         public static Player inst = null;
-        private enum PlayerState
-        {
-            Run,
-            Jump,
-            Fall,
-            Dead
-        }
+        public Transform myCam = null;
+        
 
-        private StateMachine stateMachine;
-        //스테이트들을 보관
-        private Dictionary<PlayerState, IState> dicState = new Dictionary<PlayerState, IState>();
+        public StateMachine stateMachine { get; private set;}
         private void Awake()
         {
             inst = this;
@@ -24,20 +17,10 @@ namespace playerController
         // Start is called before the first frame update
         void Start()
         {
-            //상태 생성
-            IState run = new StateRun();
-            IState jump = new StateJump();
-            IState fall = new StateFall();
-            IState dead = new StateDead();
-
-            //키입력 등에 따라서 언제나 상태를 꺼내 쓸 수 있게 딕셔너리에 보관
-            dicState.Add(PlayerState.Run, run);
-            dicState.Add(PlayerState.Jump, jump);
-            dicState.Add(PlayerState.Fall, fall);
-            dicState.Add(PlayerState.Dead, dead);
-
-            //기본상태는 달리기로 설정.
-            stateMachine = new StateMachine(run);
+            stateMachine = new StateMachine(PlayerState.Run, new StateRun());
+            stateMachine.AddState(PlayerState.Jump, new StateJump());
+            stateMachine.AddState(PlayerState.Fall, new StateFall());
+            stateMachine.AddState(PlayerState.Dead, new StateDead());
         }
 
         // Update is called once per frame
@@ -56,21 +39,15 @@ namespace playerController
         }
         public void OnJump()
         {
-            if (stateMachine.CurrentState == dicState[PlayerState.Run])
+            if(stateMachine.CurrentState == stateMachine.GetState(PlayerState.Run))
             {
-                stateMachine.SetState(dicState[PlayerState.Jump]);
+                stateMachine.SetState(PlayerState.Jump);
             }
         }
-        public void OnFall()
-        {
-            if (myRigid.velocity.y < 0f)
-            {
-                stateMachine.SetState(dicState[PlayerState.Fall]);
-            }
-        }
+       
         private void OnCollisionEnter(Collision collision)
         {
-            stateMachine.SetState(dicState[PlayerState.Run]);
+            stateMachine.SetState(PlayerState.Run);
         }
     }
 }
