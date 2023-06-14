@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace playerController
 {
-    public class Player : CharacterProperty
+    public class Player : Observers
     {
         public static Player inst = null;
+        public LayerMask blockMask = default;
         public Transform myCam = null;
         public Transform player = null;
         public Transform stage = null;
@@ -28,8 +29,6 @@ namespace playerController
         // Update is called once per frame
         void Update()
         {
-            Debug.Log(stateMachine.CurrentState);
-
             //매프레임 실행해야하는 동작 호출.
             stateMachine.DoOperateUpdate();
         }
@@ -46,7 +45,14 @@ namespace playerController
                 stateMachine.SetState(PlayerState.Jump);
             }
         }
-        
+        public void OnBlock()
+        {
+            myTarget.GetComponent<Observer>().Notified(AttackState.Block);
+        }
+        public void OnAttack()
+        {
+            myTarget.GetComponent<Observer>().Notified(AttackState.Attack);
+        }
         public void SetCamParent(bool v)
         {
             if (v) myCam.SetParent(player);
@@ -55,7 +61,13 @@ namespace playerController
 
         private void OnCollisionEnter(Collision collision)
         {
-            stateMachine.SetState(PlayerState.Run);
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                stateMachine.SetState(PlayerState.Run);
+
+            if ((blockMask & 1 << collision.gameObject.layer) != 0)
+            {
+                if (myTarget != collision.transform) myTarget = collision.transform;
+            }
         }
     }
 }

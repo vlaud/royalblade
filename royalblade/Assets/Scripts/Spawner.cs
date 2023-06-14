@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     public GameObject blocks;
     public string blockName;
     public float offset = 1.2f;
+    public int blockCount = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +24,10 @@ public class Spawner : MonoBehaviour
     }
     void GenerateBlocks()
     {
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < blockCount; i++)
         {
             var block = ObjectPool.Inst.GetObject<Blocks>(blocks, transform, blockName);
-            block.m_Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-            block.m_Rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
+            block.ResetBlock();
             GameObject obj = block.gameObject;
             obj.transform.localPosition = new Vector3(0.0f, i * offset, 0.0f);
             obj.name = $"cube{i}";

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3085914193180255492}
   - component: {fileID: 7827455122714652421}
   - component: {fileID: 6097947074392292699}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destructable: {fileID: 11400000, guid: 79c350e4e67fc944895520f03333c5ec, type: 2}
+  m_Rigidbody: {fileID: 0}
 --- !u!33 &3234540612469799214
 MeshFilter:
   m_ObjectHideFlags: 0
