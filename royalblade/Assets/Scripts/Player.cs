@@ -10,6 +10,7 @@ namespace playerController
         public Transform player = null;
         public Transform stage = null;
         public float dist;
+        public Detection detection = null;
         public StateMachine stateMachine { get; private set;}
         private void Awake()
         {
@@ -19,6 +20,7 @@ namespace playerController
         void Start()
         {
             player = transform;
+            detection.SetLayer(blockMask);
             stateMachine = new StateMachine(PlayerState.Run, new StateRun());
             stateMachine.AddState(PlayerState.Jump, new StateJump());
             stateMachine.AddState(PlayerState.Fall, new StateFall());
@@ -57,23 +59,19 @@ namespace playerController
             if (v) myCam.SetParent(player);
             else myCam.SetParent(stage);
         }
-
+        public override void FindTarget(Transform target)
+        {
+            myTarget = target;
+        }
+        public override void LostTarget()
+        {
+            myTarget = null;
+            detection.myTarget = null;
+        }
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 stateMachine.SetState(PlayerState.Run);
-
-            if ((blockMask & 1 << collision.gameObject.layer) != 0)
-            {
-                if (myTarget != collision.transform) myTarget = collision.transform;
-            }
-        }
-        private void OnCollisionExit(Collision collision)
-        {
-            if ((blockMask & 1 << collision.gameObject.layer) != 0)
-            {
-                if (myTarget == collision.transform) myTarget = null;
-            }
         }
     }
 }

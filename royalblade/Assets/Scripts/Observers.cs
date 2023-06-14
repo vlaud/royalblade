@@ -12,6 +12,11 @@ public interface Observer
     public void Notified(AttackState s);
     public void SetMySubject(Subject s);
 }
+public interface Detect
+{
+    void FindTarget(Transform target);
+    void LostTarget();
+}
 public enum AttackState
 {
     None,
@@ -19,7 +24,7 @@ public enum AttackState
     Block,
     Attack
 }
-public class Observers : CharacterProperty, Subject, Observer
+public class Observers : CharacterProperty, Subject, Observer, Detect
 {
     protected List<Observer> myBlocks = new List<Observer>();
     Transform _target = null;
@@ -64,5 +69,13 @@ public class Observers : CharacterProperty, Subject, Observer
     public virtual void SetMySubject(Subject s)
     {
         mySubject = s;
+    }
+    public virtual void FindTarget(Transform target)
+    {
+
+    }
+    public virtual void LostTarget()
+    {
+
     }
 }

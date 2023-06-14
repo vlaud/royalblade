@@ -17,6 +17,7 @@ public class Blocks : Observers
     {
         myRigid.constraints = RigidbodyConstraints.FreezeAll;
         ObjectPool.Inst.ReleaseObject<Blocks>(gameObject, destructable.blockName);
+        myTarget.GetComponent<Detect>().LostTarget();
     }
     public void ResetBlock()
     {
@@ -42,10 +43,5 @@ public class Blocks : Observers
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             myTarget = collision.transform;
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-            myTarget = null;
     }
 }
