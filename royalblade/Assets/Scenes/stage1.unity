@@ -826,6 +826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocks: {fileID: 6408190235828212055, guid: 81bd3e3956ad84343a542b844b15192a, type: 3}
   blockName: Cube
+  offset: 1.2
 --- !u!1 &1359610935
 GameObject:
   m_ObjectHideFlags: 0
