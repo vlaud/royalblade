@@ -14,7 +14,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler
     
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.clickCount == 1)
+        if (eventData.clickCount >= 1)
         {
             OnAction();
         }

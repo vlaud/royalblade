@@ -62,6 +62,7 @@ namespace playerController
         public override void FindTarget(Transform target)
         {
             myTarget = target;
+            myTarget.GetComponent<Detect>().FindTarget(transform);
         }
         public override void LostTarget()
         {

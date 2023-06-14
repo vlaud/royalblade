@@ -16,8 +16,9 @@ public class Blocks : Observers
     public void Destruction()
     {
         myRigid.constraints = RigidbodyConstraints.FreezeAll;
-        ObjectPool.Inst.ReleaseObject<Blocks>(gameObject, destructable.blockName);
         myTarget.GetComponent<Detect>().LostTarget();
+        Debug.Log(myTarget);
+        ObjectPool.Inst.ReleaseObject<Blocks>(gameObject, destructable.blockName);
     }
     public void ResetBlock()
     {
@@ -38,6 +39,10 @@ public class Blocks : Observers
                 Destruction();
                 break;
         }
+    }
+    public override void FindTarget(Transform target)
+    {
+        myTarget = target;
     }
     private void OnCollisionEnter(Collision collision)
     {
