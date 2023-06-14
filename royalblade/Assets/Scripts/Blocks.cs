@@ -41,6 +41,11 @@ public class Blocks : Observers
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-            if (myTarget != collision.transform) myTarget = collision.transform;
+            myTarget = collision.transform;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            myTarget = null;
     }
 }

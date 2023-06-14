@@ -46,11 +46,11 @@ namespace playerController
         }
         public void OnBlock()
         {
-            myTarget.GetComponent<Observer>().Notified(AttackState.Block);
+            if(myTarget != null) myTarget.GetComponent<Observer>().Notified(AttackState.Block);
         }
         public void OnAttack()
         {
-            myTarget.GetComponent<Observer>().Notified(AttackState.Attack);
+            if (myTarget != null) myTarget.GetComponent<Observer>().Notified(AttackState.Attack);
         }
         public void SetCamParent(bool v)
         {
@@ -66,6 +66,13 @@ namespace playerController
             if ((blockMask & 1 << collision.gameObject.layer) != 0)
             {
                 if (myTarget != collision.transform) myTarget = collision.transform;
+            }
+        }
+        private void OnCollisionExit(Collision collision)
+        {
+            if ((blockMask & 1 << collision.gameObject.layer) != 0)
+            {
+                if (myTarget == collision.transform) myTarget = null;
             }
         }
     }
