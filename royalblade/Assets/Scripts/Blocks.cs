@@ -1,12 +1,18 @@
-using playerController;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Blocks : Observers
 {
-    [SerializeField] private Destructable destructable;
-   
+    public Destructable destructable;
+    public float limitVelocity = 5.0f;
+    private void FixedUpdate()
+    {
+        if (Mathf.Abs(myRigid.velocity.y) > limitVelocity) // 가속도가 5 이상이라면
+            myRigid.velocity = new Vector3(myRigid.velocity.x, Mathf.Sign(myRigid.velocity.y) * limitVelocity, myRigid.velocity.z); //가속도 제한
+    }
+    public void GetLimit(float limit)
+    {
+        limitVelocity = limit;
+    }
     public void Destruction()
     {
         myRigid.constraints = RigidbodyConstraints.FreezeAll;

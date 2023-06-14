@@ -732,7 +732,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   myImage: {fileID: 536430560}
-  coolTime: 0.1
+  coolTime: 0
 --- !u!1 &811482931
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,6 +781,7 @@ MonoBehaviour:
   blocks: {fileID: 6408190235828212055, guid: 81bd3e3956ad84343a542b844b15192a, type: 3}
   blockName: Cube
   offset: 1.2
+  blockCount: 1
 --- !u!1 &879384478
 GameObject:
   m_ObjectHideFlags: 0
