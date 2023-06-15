@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Buttons : MonoBehaviour, IPointerClickHandler
+public class Buttons : MonoBehaviour, IPointerClickHandler, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
     public UnityEvent myAction;
     public Image myImage;
@@ -12,6 +12,18 @@ public class Buttons : MonoBehaviour, IPointerClickHandler
     public virtual void OnPointerClick(PointerEventData eventData)
     {
        
+    }
+    public virtual void OnBeginDrag(PointerEventData eventData)
+    {
+
+    }
+    public virtual void OnDrag(PointerEventData eventData)
+    {
+
+    }
+    public virtual void OnEndDrag(PointerEventData eventData)
+    {
+
     }
     public virtual void OnAction() { }
 }

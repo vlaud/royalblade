@@ -51,6 +51,11 @@ namespace playerController
                 stateMachine.SetState(PlayerState.Jump);
             }
         }
+        public void OnJumpUltimate()
+        {
+            stateMachine.SetState(PlayerState.Jump);
+            myRigid.AddForce(Vector3.up * jumpPower * 2.0f);
+        }
         public void OnBlock()
         {
             if(myTarget != null) myTarget.GetComponent<Observer>().Notified(AttackState.Block);

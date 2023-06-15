@@ -40,7 +40,7 @@ public class Blocks : Observers
                 Debug.Log(myTarget);
                 var jumpbutton = ButtonManager.instance.jumpButton;
                 jumpbutton.myImage.fillAmount += Player.inst.fillBlock;
-                if (jumpbutton.myImage.fillAmount == 1.0f) jumpbutton.effect.SetActive(true);
+                if (jumpbutton.myImage.fillAmount == 1.0f) jumpbutton.ChangeState(JumpButton.State.Ult);
                 break;
             case AttackState.Attack:
                 Destruction();
