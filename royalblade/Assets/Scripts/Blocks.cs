@@ -18,6 +18,7 @@ public class Blocks : Observers
     {
         var attackButton = ButtonManager.instance.attackButton;
         attackButton.myImage.fillAmount += Player.inst.fillAttack;
+        if (attackButton.myImage.fillAmount == 1.0f) attackButton.effect.SetActive(true);
         myRigid.constraints = RigidbodyConstraints.FreezeAll;
         myTarget.GetComponent<Detect>().LostTarget();
         Debug.Log(myTarget);
@@ -39,6 +40,7 @@ public class Blocks : Observers
                 Debug.Log(myTarget);
                 var jumpbutton = ButtonManager.instance.jumpButton;
                 jumpbutton.myImage.fillAmount += Player.inst.fillBlock;
+                if (jumpbutton.myImage.fillAmount == 1.0f) jumpbutton.effect.SetActive(true);
                 break;
             case AttackState.Attack:
                 Destruction();

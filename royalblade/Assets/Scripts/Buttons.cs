@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -9,6 +7,7 @@ public class Buttons : MonoBehaviour, IPointerClickHandler
 {
     public UnityEvent myAction;
     public Image myImage;
+    public GameObject effect;
    
     public virtual void OnPointerClick(PointerEventData eventData)
     {

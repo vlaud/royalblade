@@ -5,6 +5,7 @@ public class JumpButton : Buttons
     private void Start()
     {
         myImage.fillAmount = 0.0f;
+        effect.SetActive(false);
     }
     public override void OnPointerClick(PointerEventData eventData)
     {

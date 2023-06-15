@@ -6,7 +6,7 @@ public class SkillButton : Buttons
 {
     public float coolTime = 2.0f;
     Coroutine act = null;
-    
+   
     public override void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.clickCount >= 1)
