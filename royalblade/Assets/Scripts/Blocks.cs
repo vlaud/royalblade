@@ -17,6 +17,8 @@ public class Blocks : Observers
     }
     public void Destruction()
     {
+        var attackButton = ButtonManager.instance.attackButton;
+        attackButton.myImage.fillAmount += Player.inst.fillAttack;
         myRigid.constraints = RigidbodyConstraints.FreezeAll;
         myTarget.GetComponent<Detect>().LostTarget();
         Debug.Log(myTarget);

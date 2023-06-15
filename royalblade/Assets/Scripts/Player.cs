@@ -11,6 +11,7 @@ namespace playerController
         public Transform stage = null;
         public float dist;
         public float blockPower = 600.0f;
+        public float fillAttack = 0.1f;
         public float fillBlock = 0.4f;
         public float jumpPower = 300.0f;
         public Detection detection = null;
