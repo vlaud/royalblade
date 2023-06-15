@@ -1,3 +1,4 @@
+using playerController;
 using UnityEngine;
 
 public class Blocks : Observers
@@ -8,6 +9,7 @@ public class Blocks : Observers
     {
         if (Mathf.Abs(myRigid.velocity.y) > limitVelocity) // 가속도가 5 이상이라면
             myRigid.velocity = new Vector3(myRigid.velocity.x, Mathf.Sign(myRigid.velocity.y) * limitVelocity, myRigid.velocity.z); //가속도 제한
+
     }
     public void GetLimit(float limit)
     {
@@ -32,8 +34,10 @@ public class Blocks : Observers
             case AttackState.None:
                 break;
             case AttackState.Block:
-                myRigid.AddForce(Vector3.up * 600.0f);
+                myRigid.AddForce(Vector3.up * Player.inst.blockPower);
                 Debug.Log(myTarget);
+                var jumpbutton = ButtonManager.instance.jumpButton;
+                jumpbutton.myImage.fillAmount += Player.inst.fillBlock;
                 break;
             case AttackState.Attack:
                 Destruction();

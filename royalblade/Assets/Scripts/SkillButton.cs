@@ -1,25 +1,20 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.Events;
 
-public class SkillButton : MonoBehaviour, IPointerClickHandler
+public class SkillButton : Buttons
 {
-    public UnityEvent myAction;
-    public Image myImage;
     public float coolTime = 2.0f;
     Coroutine act = null;
     
-    public void OnPointerClick(PointerEventData eventData)
+    public override void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.clickCount >= 1)
         {
             OnAction();
         }
     }
-    public void OnAction()
+    public override void OnAction()
     {
         if (act != null) return;
         act = StartCoroutine(Cooling());

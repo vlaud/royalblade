@@ -10,6 +10,8 @@ namespace playerController
         public Transform player = null;
         public Transform stage = null;
         public float dist;
+        public float blockPower = 600.0f;
+        public float fillBlock = 0.4f;
         public Detection detection = null;
         public StateMachine stateMachine { get; private set;}
         private void Awake()
