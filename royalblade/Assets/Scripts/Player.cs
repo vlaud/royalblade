@@ -12,6 +12,7 @@ namespace playerController
         public float dist;
         public float blockPower = 600.0f;
         public float fillBlock = 0.4f;
+        public float jumpPower = 300.0f;
         public Detection detection = null;
         public StateMachine stateMachine { get; private set;}
         private void Awake()

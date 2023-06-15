@@ -584,6 +584,8 @@ MonoBehaviour:
   stage: {fileID: 1359610936}
   dist: 0
   blockPower: 600
+  fillBlock: 0.4
+  jumpPower: 600
   detection: {fileID: 1758744312}
 --- !u!1 &600910545
 GameObject:

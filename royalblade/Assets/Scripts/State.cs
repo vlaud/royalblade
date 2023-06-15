@@ -27,7 +27,9 @@ namespace playerController
     {
         public void OperateEnter()
         {
-            Player.inst.myRigid.AddForce(Vector3.up * 300.0f);
+            float addPower = ButtonManager.instance.jumpButton.myImage.fillAmount + 1.0f;
+            Debug.Log(addPower);
+            Player.inst.myRigid.AddForce(Vector3.up * Player.inst.jumpPower * addPower);
         }
 
         public void OperateExit()
