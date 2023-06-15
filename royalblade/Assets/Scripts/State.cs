@@ -71,6 +71,9 @@ namespace playerController
             {
                 Player.inst.SetCamParent(true);
             }
+            if (Mathf.Abs(Player.inst.myRigid.velocity.y) > Player.inst.limitVelocity) // 가속도가 5 이상이라면
+                Player.inst.myRigid.velocity = new Vector3(Player.inst.myRigid.velocity.x, Mathf.Sign(Player.inst.myRigid.velocity.y) 
+                    * Player.inst.limitVelocity, Player.inst.myRigid.velocity.z); //가속도 제한
         }
 
         public void OperateUpdate()

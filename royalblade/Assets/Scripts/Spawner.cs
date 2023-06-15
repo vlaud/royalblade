@@ -11,13 +11,15 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         blockName = blocks.GetComponent<Blocks>().destructable.blockName;
+        GenerateBlocks();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
+        if(transform.childCount == 0)
         {
+            blockCount++;
             GenerateBlocks();
         }
     }

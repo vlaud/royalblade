@@ -9,7 +9,6 @@ public class Blocks : Observers
     {
         if (Mathf.Abs(myRigid.velocity.y) > limitVelocity) // 가속도가 5 이상이라면
             myRigid.velocity = new Vector3(myRigid.velocity.x, Mathf.Sign(myRigid.velocity.y) * limitVelocity, myRigid.velocity.z); //가속도 제한
-
     }
     public void GetLimit(float limit)
     {

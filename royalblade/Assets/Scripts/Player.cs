@@ -14,6 +14,7 @@ namespace playerController
         public float fillAttack = 0.1f;
         public float fillBlock = 0.4f;
         public float jumpPower = 300.0f;
+        public float limitVelocity = 5.0f;
         public Detection detection = null;
         public StateMachine stateMachine { get; private set;}
         private void Awake()

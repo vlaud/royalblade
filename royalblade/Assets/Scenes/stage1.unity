@@ -587,6 +587,7 @@ MonoBehaviour:
   fillAttack: 0.1
   fillBlock: 0.4
   jumpPower: 600
+  limitVelocity: 2
   detection: {fileID: 1758744312}
 --- !u!1 &600910545
 GameObject:
@@ -701,7 +702,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocks: {fileID: 6408190235828212055, guid: 81bd3e3956ad84343a542b844b15192a, type: 3}
   offset: 1.2
-  blockCount: 1
+  blockCount: 5
   limitVelocity: 5
   blockName: Cube
 --- !u!1 &879384478
